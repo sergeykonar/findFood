@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sugar">Cukry</string>
+    <string name="fat">Tuky</string>
+    <string name="carbohydrates">Sacharidy</string>
+    <string name="energy">Energie</string>
+    <string name="proteins">Bilkoviny</string>
+    <string name="list_is_empty">Seznam potravin je prázdný. Hledej jídlo!</string>
+</resources>

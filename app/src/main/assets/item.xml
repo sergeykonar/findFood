@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<records>
+    <food name="test" price="100" />
+
+    <food name="test22" price="1020" />
+
+    <food name="twwest" price="10320" />
+
+</records>

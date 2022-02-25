@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingStart="16dp"
+    android:paddingTop="6dp"
+    android:paddingEnd="16dp">
+
+    <TextView
+        android:id="@+id/searchFoodItem_name"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:text="TextView" />
+
+    <ImageButton
+        android:id="@+id/searchFoodItem_openBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:minHeight="48dp"
+        android:paddingStart="150dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        app:srcCompat="@drawable/ic_baseline_navigate_next_24" />
+</androidx.appcompat.widget.LinearLayoutCompat>

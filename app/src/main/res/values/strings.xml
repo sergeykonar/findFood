@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name" translatable="false">FoodApp</string>
+
+    <string name="sugar">Sugar</string>
+    <string name="fat">Fat</string>
+    <string name="carbohydrates">Carbohydrates</string>
+    <string name="energy">Energy</string>
+    <string name="proteins">Proteins</string>
+    <string name="list_is_empty">List of food items is empty. Search for food!</string>
+</resources>
