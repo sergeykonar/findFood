@@ -62,11 +62,11 @@ class FoodInfoActivity : AppCompatActivity() {
 
                             Picasso.get().load(foodObj.photo).into(image)
 
-                            energyInfo?.text = String.format("%s %s", resources.getString(R.string.energy), i.hodnoty[0].energy)
-                            proteins?.text = String.format("%s %s", resources.getString(R.string.proteins), i.hodnoty[0].proteins)
-                            carbohydrates?.text = String.format("%s %s", resources.getString(R.string.carbohydrates), i.hodnoty[0].carbohydrates)
-                            fat?.text = String.format("%s %s", resources.getString(R.string.fat), i.hodnoty[0].fat)
-                            sugars?.text = String.format("%s %s", resources.getString(R.string.sugar), i.hodnoty[0].sugar)
+                            energyInfo?.text = String.format("%s %s %s", resources.getString(R.string.energy), i.hodnoty[0].energy, resources.getString(R.string.kcal))
+                            proteins?.text = String.format("%s %s %s", resources.getString(R.string.proteins), i.hodnoty[0].proteins, resources.getString(R.string.gram))
+                            carbohydrates?.text = String.format("%s %s %s", resources.getString(R.string.carbohydrates), i.hodnoty[0].carbohydrates, resources.getString(R.string.gram))
+                            fat?.text = String.format("%s %s %s", resources.getString(R.string.fat), i.hodnoty[0].fat, resources.getString(R.string.gram))
+                            sugars?.text = String.format("%s %s %s", resources.getString(R.string.sugar), i.hodnoty[0].sugar, resources.getString(R.string.gram))
 
                             Log.e(mTag, String.format("Food name \"%s\" Characteristics \"%s\" ", i.name, i.hodnoty.toString()))
                         }

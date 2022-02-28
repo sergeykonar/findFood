@@ -7,4 +7,6 @@
     <string name="energy">Energy</string>
     <string name="proteins">Proteins</string>
     <string name="list_is_empty">List of food items is empty. Search for food!</string>
+    <string name="gram" translatable="false">g</string>
+    <string name="kcal">kcal</string>
 </resources>
