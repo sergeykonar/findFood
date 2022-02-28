@@ -1,6 +1,7 @@
 package com.example.data.repository
 
 import com.example.data.models.FoodItem
+import com.example.data.models.FoodItemDb
 import com.example.data.models.FoodItemInfo
 import com.example.domain.models.Hodnota
 
@@ -33,5 +34,9 @@ class FoodMapper {
             data.add(hodnota)
         }
         return data
+    }
+
+    fun toFoodItemDb(foodItem: com.example.domain.models.FoodItemCache): FoodItemDb {
+        return FoodItemDb(name = foodItem.name)
     }
 }

@@ -8,12 +8,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.domain.models.FoodItem
+import com.example.domain.models.FoodItemCache
 import com.example.domain.models.FoodItemInfo
 import com.example.domain.models.Resource
 import com.example.foodapp.viewmodels.FoodInfoViewModel
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -69,6 +71,9 @@ class FoodInfoActivity : AppCompatActivity() {
                             sugars?.text = String.format("%s %s %s", resources.getString(R.string.sugar), i.hodnoty[0].sugar, resources.getString(R.string.gram))
 
                             Log.e(mTag, String.format("Food name \"%s\" Characteristics \"%s\" ", i.name, i.hodnoty.toString()))
+
+
+                            foodInfoViewModel?.insertFood(FoodItemCache(i.name))
                         }
                         is Resource.ErrorState -> {
                             Log.e(mTag, it.exception.message.toString())
