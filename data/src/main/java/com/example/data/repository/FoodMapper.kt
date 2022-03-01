@@ -3,6 +3,7 @@ package com.example.data.repository
 import com.example.data.models.FoodItem
 import com.example.data.models.FoodItemDb
 import com.example.data.models.FoodItemInfo
+import com.example.domain.models.FoodItemCache
 import com.example.domain.models.Hodnota
 
 class FoodMapper {
@@ -38,5 +39,9 @@ class FoodMapper {
 
     fun toFoodItemDb(foodItem: com.example.domain.models.FoodItemCache): FoodItemDb {
         return FoodItemDb(name = foodItem.name)
+    }
+
+    fun toFoodItemCache(it: FoodItemDb): FoodItemCache {
+        return FoodItemCache(it.name)
     }
 }

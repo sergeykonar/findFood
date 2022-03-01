@@ -1,10 +1,15 @@
 package com.example.foodapp
 
+import android.app.SearchManager
 import android.content.Intent
+import android.database.MatrixCursor
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.BaseColumns
 import android.util.Log
+import android.util.SparseArray
 import android.view.View
+import android.view.autofill.AutofillValue
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.SearchView
@@ -13,12 +18,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.models.FoodItem
+import com.example.domain.models.FoodItemCache
 import com.example.domain.models.Resource
 import com.example.foodapp.adapters.SearchFoodAdapter
 import com.example.foodapp.viewmodels.MainViewModel
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -30,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     private var searchFoodList: RecyclerView? = null
     private var progressBar: ProgressBar? = null
     private var emptyListText: TextView? = null
+    private lateinit var hint: List<*>
     private val mTag = MainActivity::class.java.canonicalName
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +50,31 @@ class MainActivity : AppCompatActivity() {
         progressBar = findViewById(R.id.progressBar)
         emptyListText = findViewById(R.id.emptyListText)
 
+        loadHistory()
+        setSearchView()
+    }
+
+    private fun loadHistory(){
+        lifecycleScope.launch {
+            mainViewModel?.getSavedFood()
+                ?.collect(){
+                    when(it){
+                        is Resource.LoadingState -> {
+                            Log.e(mTag, "Loading")
+                        }
+                        is Resource.DataState<*> -> {
+                            hint = it.data as ArrayList<FoodItemCache>
+                            Log.e(mTag, it.data.toString())
+                        }
+                        is Resource.ErrorState -> {
+                            Log.e(mTag, it.exception.message.toString())
+                        }
+                    }
+                }
+        }
+    }
+
+    private fun setSearchView() {
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 getResults()
@@ -53,10 +86,9 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
         })
-
     }
 
-    fun getResults(){
+    private fun getResults(){
         lifecycleScope.launch(Dispatchers.IO){
             mainViewModel?.getFoodResponse(mainViewModel!!.searchResult)
                 ?.collect(){

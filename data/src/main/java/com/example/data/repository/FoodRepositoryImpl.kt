@@ -9,6 +9,7 @@ import com.example.domain.models.FoodItemInfo
 import com.example.domain.repository.FoodRepository
 import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 class FoodRepositoryImpl @Inject constructor(val apiService: ApiService, val dao: FoodItemsDao): FoodRepository {
 
@@ -29,5 +30,15 @@ class FoodRepositoryImpl @Inject constructor(val apiService: ApiService, val dao
         val mapper = FoodMapper()
         val obj = mapper.toFoodItemDb(foodItem)
         dao.insertFood(obj)
+    }
+
+    override suspend fun getFoodDataDb(): ArrayList<FoodItemCache> {
+        val list = dao.getAll()
+        val mapper = FoodMapper()
+        val data = ArrayList<FoodItemCache>()
+        list.forEach {
+            data.add(mapper.toFoodItemCache(it))
+        }
+        return data
     }
 }

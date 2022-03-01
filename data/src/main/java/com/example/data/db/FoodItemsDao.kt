@@ -11,4 +11,6 @@ interface FoodItemsDao {
     @Insert
     suspend fun insertFood(foodItemDb: FoodItemDb)
 
+    @Query("SELECT * FROM fooditemdb")
+    suspend fun getAll(): List<FoodItemDb>
 }

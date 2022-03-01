@@ -37,4 +37,5 @@ class FoodInfoViewModel @Inject constructor(private val useCase: GetFoodByIdUseC
             Log.e(mTag, e.message.toString())
         }
     }
+
 }

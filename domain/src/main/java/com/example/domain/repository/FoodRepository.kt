@@ -13,4 +13,5 @@ interface FoodRepository {
     suspend fun getFoodItems(string: String): ArrayList<FoodItem>
     suspend fun getFoodItemById(id: String): FoodItemInfo
     suspend fun saveToDatabase(foodItem: FoodItemCache)
+    suspend fun getFoodDataDb(): ArrayList<FoodItemCache>
 }
